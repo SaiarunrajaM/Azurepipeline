@@ -1,0 +1,12 @@
+{
+	"name": "sivaji2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Year2008",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

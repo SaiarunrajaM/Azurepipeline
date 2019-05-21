@@ -1,0 +1,25 @@
+{
+	"name": "SV_SCVtoSQL_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "SV_CSVtoSQL",
+				"type": "ExecuteDataFlow",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "SV_CSVtoSQL",
+						"type": "DataFlowReference"
+					}
+				}
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

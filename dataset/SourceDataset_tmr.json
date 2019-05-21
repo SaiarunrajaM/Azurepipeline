@@ -1,0 +1,40 @@
+{
+	"name": "SourceDataset_tmr",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "pname",
+				"type": "String"
+			},
+			{
+				"name": "age",
+				"type": "Int32"
+			},
+			{
+				"name": "salary",
+				"type": "Int32"
+			},
+			{
+				"name": "companyname",
+				"type": "String"
+			},
+			{
+				"name": "pid",
+				"type": "Int32"
+			},
+			{
+				"name": "gender",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[persons]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

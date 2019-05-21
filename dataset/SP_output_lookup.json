@@ -1,0 +1,43 @@
+{
+	"name": "SP_output_lookup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer4",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "pname",
+				"type": "varchar"
+			},
+			{
+				"name": "age",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "salary",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "companyname",
+				"type": "varchar"
+			},
+			{
+				"name": "pid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gender",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[persons]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

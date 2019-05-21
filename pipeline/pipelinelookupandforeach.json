@@ -1,0 +1,178 @@
+{
+	"name": "pipelinelookupandforeach",
+	"properties": {
+		"activities": [
+			{
+				"name": "LookupCategories",
+				"type": "Lookup",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderStoredProcedureName": "[dbo].[getProductCategory]"
+					},
+					"dataset": {
+						"referenceName": "SqlServerTable",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "ForEach",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "LookupCategories",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LookupCategories').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "CopyData",
+							"type": "Copy",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderStoredProcedureName": "[dbo].[getsales]",
+									"storedProcedureParameters": {
+										"productcategory": {
+											"type": "String",
+											"value": {
+												"value": "@item().Category",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSetting"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSetting",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "OrderDate",
+												"type": "DateTime"
+											},
+											"sink": {
+												"name": "OrderDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"name": "PurchaseOrderNumber",
+												"type": "String"
+											},
+											"sink": {
+												"name": "PurchaseOrderNumber",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Amount",
+												"type": "Decimal"
+											},
+											"sink": {
+												"name": "Amount",
+												"type": "Decimal"
+											}
+										}
+									]
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Category",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Lookupandforeachcategory",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "StoredProcedure",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "CopyData",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[updateproductdeails]",
+								"storedProcedureParameters": {
+									"duration": {
+										"value": {
+											"value": "@activity('CopyData').output.CopyDuration",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									},
+									"productcategory": {
+										"value": {
+											"value": "@item().Category",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SV_Sqlservers",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

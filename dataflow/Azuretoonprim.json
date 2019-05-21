@@ -1,0 +1,34 @@
+{
+	"name": "Azuretoonprim",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "source1",
+					"script": "source(output(\n\t\tID as string,\n\t\tNames as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table') ~> source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DestinationASql",
+						"type": "DatasetReference"
+					},
+					"name": "sink1",
+					"script": "ConditionalSplit1@name sink(input(\n\t\tID as string,\n\t\tNames as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false) ~> sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "ConditionalSplit1",
+					"script": "source1 split(ID=='2',\n\tdisjoint: false) ~> ConditionalSplit1@(name)"
+				}
+			]
+		}
+	}
+}

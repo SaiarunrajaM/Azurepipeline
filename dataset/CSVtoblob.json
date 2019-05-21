@@ -1,0 +1,15 @@
+{
+	"name": "CSVtoblob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase7",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "[dbo].[BlobTest]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

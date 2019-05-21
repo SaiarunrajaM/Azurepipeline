@@ -1,0 +1,141 @@
+{
+	"name": "lookup",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set Variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('name')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Blobstore",
+							"type": "ExecuteDataFlow",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "Blobstore",
+									"type": "DataFlowReference"
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Set Variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"typeProperties": {
+					"variableName": "arrays",
+					"value": {
+						"value": "@variables('name')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Stored Procedure1",
+				"type": "SqlServerStoredProcedure",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "test1",
+						"value": "?"
+					}
+				],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_Flag]"
+				},
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Stored Procedure1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[sp_Flag]"
+					},
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"sp": {
+				"type": "int",
+				"defaultValue": 0
+			},
+			"Sp_ouptput": {
+				"type": "Array"
+			}
+		},
+		"variables": {
+			"name": {
+				"type": "Array",
+				"defaultValue": [
+					1,
+					2
+				]
+			},
+			"arrays": {
+				"type": "Array",
+				"defaultValue": [
+					1
+				]
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

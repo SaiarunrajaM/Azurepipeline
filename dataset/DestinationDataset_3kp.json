@@ -1,0 +1,28 @@
+{
+	"name": "DestinationDataset_3kp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "ID",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "Names",
+				"type": "String",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[samples]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

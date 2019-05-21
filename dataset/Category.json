@@ -1,0 +1,12 @@
+{
+	"name": "Category",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Lookupandforeachcategory",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

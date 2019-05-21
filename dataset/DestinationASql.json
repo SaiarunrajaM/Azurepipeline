@@ -1,0 +1,24 @@
+{
+	"name": "DestinationASql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Inventory",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Names",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[BlobTest]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "Dinesh_2",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyCSV_DK",
+				"type": "ExecuteDataFlow",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "CopyCSV_DK",
+						"type": "DataFlowReference"
+					}
+				}
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

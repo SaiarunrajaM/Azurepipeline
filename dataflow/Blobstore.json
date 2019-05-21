@@ -1,0 +1,28 @@
+{
+	"name": "Blobstore",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "source1",
+					"script": "source(output(\n\t\tpname as string,\n\t\tage as integer,\n\t\tsalary as integer,\n\t\tcompanyname as string,\n\t\tpid as integer,\n\t\tgender as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tquery: 'SELECT * FROM [dbo].[persons] NOLOCK',\n\tformat: 'query',\n\tpartitionBy('fixed', 2,\n\t\tage<26\n\t)) ~> source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "lookup",
+						"type": "DatasetReference"
+					},
+					"name": "sink1",
+					"script": "source1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false) ~> sink1"
+				}
+			]
+		}
+	}
+}

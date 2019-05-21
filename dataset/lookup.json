@@ -1,0 +1,15 @@
+{
+	"name": "lookup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Success",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "dbo.lookup"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

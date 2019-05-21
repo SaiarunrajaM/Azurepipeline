@@ -1,0 +1,42 @@
+{
+	"name": "CopyCSV_DK",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText_DK",
+						"type": "DatasetReference"
+					},
+					"name": "SourceDK",
+					"script": "source(output(\n\t\tTable as string,\n\t\tYear as string,\n\t\tRcode as string,\n\t\tDemographic as string,\n\t\tDescription as string,\n\t\tEst1 as string,\n\t\tEst2 as string,\n\t\tEst3 as string,\n\t\tEst4 as string,\n\t\tEst5 as string,\n\t\tEst6 as string,\n\t\tEst7 as string,\n\t\tEst8 as string,\n\t\tEst9 as string,\n\t\tEst10 as string,\n\t\tEst11 as string,\n\t\tDQF1 as string,\n\t\tDQF2 as string,\n\t\tDQF3 as string,\n\t\tDQF4 as string,\n\t\tDQF5 as string,\n\t\tDQF6 as string,\n\t\tDQF7 as string,\n\t\tDQF8 as string,\n\t\tDQF9 as string,\n\t\tDQF10 as string,\n\t\tDQF11 as string,\n\t\tRSE1 as string,\n\t\tRSE2 as string,\n\t\tRSE3 as string,\n\t\tRSE4 as string,\n\t\tRSE5 as string,\n\t\tRSE6 as string,\n\t\tRSE7 as string,\n\t\tRSE8 as string,\n\t\tRSE9 as string,\n\t\tRSE10 as string,\n\t\tRSE11 as string,\n\t\tP1 as string,\n\t\tP2 as string,\n\t\tP3 as string,\n\t\tP4 as string,\n\t\tP5 as string,\n\t\tP6 as string,\n\t\tP7 as string,\n\t\tP8 as string,\n\t\tP9 as string,\n\t\tP10 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> SourceDK"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DataBefore2015",
+						"type": "DatasetReference"
+					},
+					"name": "CSVDataBefore2015",
+					"script": "YearviseData@Before2015 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false) ~> CSVDataBefore2015"
+				},
+				{
+					"dataset": {
+						"referenceName": "CSVData_After2015",
+						"type": "DatasetReference"
+					},
+					"name": "CSVDataAfter2015",
+					"script": "YearviseData@After2015 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false) ~> CSVDataAfter2015"
+				}
+			],
+			"transformations": [
+				{
+					"name": "YearviseData",
+					"script": "SourceDK split(toInteger(Year)<=2015,\n\tdisjoint: false) ~> YearviseData@(Before2015, After2015)"
+				}
+			]
+		}
+	}
+}
