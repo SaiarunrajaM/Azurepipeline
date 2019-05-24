@@ -1,0 +1,52 @@
+{
+	"name": "DestinationDataset_tmr",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "pname",
+				"type": "String",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "age",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "salary",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "companyname",
+				"type": "String",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "pid",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "gender",
+				"type": "String",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[persons]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

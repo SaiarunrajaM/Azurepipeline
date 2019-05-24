@@ -1,0 +1,15 @@
+{
+	"name": "Azure_Conditions_split",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Inventory",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "dbo..CSVYEAR2008"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

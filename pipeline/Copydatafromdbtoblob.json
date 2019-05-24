@@ -1,0 +1,61 @@
+{
+	"name": "Copydatafromdbtoblob",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_j35",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Destination",
+						"value": "[dbo].[Test]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select * from Test"
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "SVAzureBlobStorage2",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"ID": "ID",
+							"Names": "Names"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_j35",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_j35",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

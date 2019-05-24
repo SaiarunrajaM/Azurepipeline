@@ -1,0 +1,92 @@
+{
+	"name": "Dynamis",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT 2 AS ID"
+					},
+					"dataset": {
+						"referenceName": "DestinationDataset_j35",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"typeProperties": {
+					"items": {
+						"value": "@array(activity('Lookup1').output)",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Stored Procedure1",
+							"type": "SqlServerStoredProcedure",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[SP_parameterflag]",
+								"storedProcedureParameters": {
+									"ID": {
+										"value": {
+											"value": "int(2)",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabase1",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"rtr": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"RRR": {
+				"type": "Array",
+				"defaultValue": [
+					1,
+					2,
+					3,
+					4
+				]
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,208 @@
+{
+	"name": "Azuredata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Inventory",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Table",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Year",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Rcode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Demographic",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Est11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DQF11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RSE11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "P10",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[.HES2018-Table10]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

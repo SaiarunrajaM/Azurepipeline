@@ -1,0 +1,212 @@
+{
+	"name": "SV_CopyPipeline_nuzontA",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_nuz",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Destination",
+						"value": "[dbo].[Sample_Test_DK]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select * FROM [AdventureWorks2016].[HumanResources].[Employee]"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "BusinessEntityID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "BusinessEntityID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NationalIDNumber",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NationalIDNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LoginID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LoginID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OrganizationNode"
+								},
+								"sink": {
+									"name": "OrganizationNode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OrganizationLevel",
+									"type": "Int16"
+								},
+								"sink": {
+									"name": "OrganizationLevel",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "JobTitle",
+									"type": "String"
+								},
+								"sink": {
+									"name": "JobTitle",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SickLeaveHours",
+									"type": "Int16"
+								},
+								"sink": {
+									"name": "SickLeaveHours",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CurrentFlag",
+									"type": "Boolean"
+								},
+								"sink": {
+									"name": "CurrentFlag",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "rowguid",
+									"type": "Guid"
+								},
+								"sink": {
+									"name": "rowguid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ModifiedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "ModifiedDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BirthDate",
+									"type": "Date"
+								},
+								"sink": {
+									"name": "BirthDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MaritalStatus",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MaritalStatus",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Gender",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Gender",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HireDate",
+									"type": "Date"
+								},
+								"sink": {
+									"name": "HireDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SalariedFlag",
+									"type": "Boolean"
+								},
+								"sink": {
+									"name": "SalariedFlag",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VacationHours",
+									"type": "Int16"
+								},
+								"sink": {
+									"name": "VacationHours",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_nuz",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_nuz",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

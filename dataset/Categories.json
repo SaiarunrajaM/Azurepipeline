@@ -1,0 +1,12 @@
+{
+	"name": "Categories",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SV_Sqlservers",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

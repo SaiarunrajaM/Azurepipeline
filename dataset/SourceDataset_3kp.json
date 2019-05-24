@@ -1,0 +1,25 @@
+{
+	"name": "SourceDataset_3kp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"structure": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "Prop_1",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"fileName": "Sample.csv",
+			"folderPath": "filecontainer"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

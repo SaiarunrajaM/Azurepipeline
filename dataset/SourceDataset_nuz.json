@@ -1,0 +1,76 @@
+{
+	"name": "SourceDataset_nuz",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SV_Sqlservers",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "BusinessEntityID",
+				"type": "Int32"
+			},
+			{
+				"name": "NationalIDNumber",
+				"type": "String"
+			},
+			{
+				"name": "LoginID",
+				"type": "String"
+			},
+			{
+				"name": "OrganizationNode"
+			},
+			{
+				"name": "OrganizationLevel",
+				"type": "Int16"
+			},
+			{
+				"name": "JobTitle",
+				"type": "String"
+			},
+			{
+				"name": "BirthDate",
+				"type": "Date"
+			},
+			{
+				"name": "MaritalStatus",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "HireDate",
+				"type": "Date"
+			},
+			{
+				"name": "SalariedFlag",
+				"type": "Boolean"
+			},
+			{
+				"name": "VacationHours",
+				"type": "Int16"
+			},
+			{
+				"name": "SickLeaveHours",
+				"type": "Int16"
+			},
+			{
+				"name": "CurrentFlag",
+				"type": "Boolean"
+			},
+			{
+				"name": "rowguid",
+				"type": "Guid"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "DateTime"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

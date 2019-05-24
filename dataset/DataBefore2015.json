@@ -1,0 +1,15 @@
+{
+	"name": "DataBefore2015",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLink_DK",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "DBO.CSVData_Before2015"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

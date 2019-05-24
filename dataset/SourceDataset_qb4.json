@@ -1,0 +1,77 @@
+{
+	"name": "SourceDataset_qb4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Dinesh_DB",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "BusinessEntityID",
+				"type": "String"
+			},
+			{
+				"name": "NationalIDNumber",
+				"type": "String"
+			},
+			{
+				"name": "LoginID",
+				"type": "String"
+			},
+			{
+				"name": "OrganizationNode",
+				"type": "String"
+			},
+			{
+				"name": "OrganizationLevel",
+				"type": "String"
+			},
+			{
+				"name": "JobTitle",
+				"type": "String"
+			},
+			{
+				"name": "BirthDate",
+				"type": "String"
+			},
+			{
+				"name": "MaritalStatus",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "HireDate",
+				"type": "String"
+			},
+			{
+				"name": "SalariedFlag",
+				"type": "String"
+			},
+			{
+				"name": "VacationHours",
+				"type": "String"
+			},
+			{
+				"name": "SickLeaveHours",
+				"type": "String"
+			},
+			{
+				"name": "CurrentFlag",
+				"type": "String"
+			},
+			{
+				"name": "rowguid",
+				"type": "String"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,213 @@
+{
+	"name": "SimplpyCopyData_DK",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_qb4",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Destination",
+						"value": "[dbo].[Sample_Test_DK]"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select * from Sample_EMP where BusinessEntityID between 1 and 100"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "BusinessEntityID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BusinessEntityID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NationalIDNumber",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NationalIDNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LoginID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LoginID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OrganizationNode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrganizationNode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OrganizationLevel",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrganizationLevel",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "JobTitle",
+									"type": "String"
+								},
+								"sink": {
+									"name": "JobTitle",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SickLeaveHours",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SickLeaveHours",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CurrentFlag",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CurrentFlag",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "rowguid",
+									"type": "String"
+								},
+								"sink": {
+									"name": "rowguid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ModifiedDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ModifiedDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BirthDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BirthDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MaritalStatus",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MaritalStatus",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Gender",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Gender",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HireDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HireDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SalariedFlag",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SalariedFlag",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "VacationHours",
+									"type": "String"
+								},
+								"sink": {
+									"name": "VacationHours",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_qb4",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_qb4",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

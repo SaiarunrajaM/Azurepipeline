@@ -1,0 +1,15 @@
+{
+	"name": "Saratest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServeronprem",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "[dbo].[InvWarhouseMaster]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,28 @@
+{
+	"name": "DestinationDataset_j35",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer_new",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "ID",
+				"type": "Int32",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "Names",
+				"type": "String",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Test]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

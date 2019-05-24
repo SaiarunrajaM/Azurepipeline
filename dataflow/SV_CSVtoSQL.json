@@ -1,0 +1,28 @@
+{
+	"name": "SV_CSVtoSQL",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SV_DelimitedText",
+						"type": "DatasetReference"
+					},
+					"name": "CSVFile",
+					"script": "source(output(\n\t\tTable as string,\n\t\tYear as string,\n\t\tRcode as string,\n\t\tDemographic as string,\n\t\tDescription as string,\n\t\tEst1 as string,\n\t\tEst2 as string,\n\t\tEst3 as string,\n\t\tEst4 as string,\n\t\tEst5 as string,\n\t\tEst6 as string,\n\t\tEst7 as string,\n\t\tEst8 as string,\n\t\tEst9 as string,\n\t\tEst10 as string,\n\t\tEst11 as string,\n\t\tDQF1 as string,\n\t\tDQF2 as string,\n\t\tDQF3 as string,\n\t\tDQF4 as string,\n\t\tDQF5 as string,\n\t\tDQF6 as string,\n\t\tDQF7 as string,\n\t\tDQF8 as string,\n\t\tDQF9 as string,\n\t\tDQF10 as string,\n\t\tDQF11 as string,\n\t\tRSE1 as string,\n\t\tRSE2 as string,\n\t\tRSE3 as string,\n\t\tRSE4 as string,\n\t\tRSE5 as string,\n\t\tRSE6 as string,\n\t\tRSE7 as string,\n\t\tRSE8 as string,\n\t\tRSE9 as string,\n\t\tRSE10 as string,\n\t\tRSE11 as string,\n\t\tP1 as string,\n\t\tP2 as string,\n\t\tP3 as string,\n\t\tP4 as string,\n\t\tP5 as string,\n\t\tP6 as string,\n\t\tP7 as string,\n\t\tP8 as string,\n\t\tP9 as string,\n\t\tP10 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\twildcardPaths:['HES2018-Table10.csv']) ~> CSVFile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SV_AzureSqlTable",
+						"type": "DatasetReference"
+					},
+					"name": "SQL",
+					"script": "CSVFile sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false) ~> SQL"
+				}
+			]
+		}
+	}
+}
