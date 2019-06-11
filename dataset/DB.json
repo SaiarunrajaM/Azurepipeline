@@ -1,0 +1,15 @@
+{
+	"name": "DB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "dbo.json"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
