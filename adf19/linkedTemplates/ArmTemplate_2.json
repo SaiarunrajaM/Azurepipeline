@@ -1,0 +1,1391 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "adf19"
+		},
+		"YEarData_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'YEarData'"
+		},
+		"Year2008_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Year2008'"
+		},
+		"adventureSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'adventureSqlServer'"
+		},
+		"linkedService1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/YEarData')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('YEarData_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Year2008')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('Year2008_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adventureSqlServer')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('adventureSqlServer_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedService1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "PostgreSql",
+				"typeProperties": {
+					"connectionString": "[parameters('linkedService1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ASQL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Emp.csv",
+						"container": "filecontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ID",
+						"type": "String"
+					},
+					{
+						"name": "Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Inventory",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Names",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[BlobTest]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Success",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Names",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[BlobTest1]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Names",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[BlobTest]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Success",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "dbo.lookup"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Azure_Conditions_split')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Inventory",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "dbo..CSVYEAR2008"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Azuredata')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Inventory",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Table",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Year",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rcode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Demographic",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P10",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[.HES2018-Table10]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CSVData_After2015')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLink_DK",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "DBO.CSVData_After2015"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CSVtoblob')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase7",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "[[dbo].[BlobTest]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Categories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SV_Sqlservers",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Category')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Lookupandforeachcategory",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Conditional')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Inventory",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Table",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Year",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rcode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Demographic",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P10",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[.HES2018-Table10]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ConditionalDatayear')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage5",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "adfstagedcopytempdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Rcode",
+						"type": "String"
+					},
+					{
+						"name": "Demographic",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Est1",
+						"type": "String"
+					},
+					{
+						"name": "Est2",
+						"type": "String"
+					},
+					{
+						"name": "Est3",
+						"type": "String"
+					},
+					{
+						"name": "Est4",
+						"type": "String"
+					},
+					{
+						"name": "Est5",
+						"type": "String"
+					},
+					{
+						"name": "Est6",
+						"type": "String"
+					},
+					{
+						"name": "Est7",
+						"type": "String"
+					},
+					{
+						"name": "Est8",
+						"type": "String"
+					},
+					{
+						"name": "Est9",
+						"type": "String"
+					},
+					{
+						"name": "Est10",
+						"type": "String"
+					},
+					{
+						"name": "Est11",
+						"type": "String"
+					},
+					{
+						"name": "DQF1",
+						"type": "String"
+					},
+					{
+						"name": "DQF2",
+						"type": "String"
+					},
+					{
+						"name": "DQF3",
+						"type": "String"
+					},
+					{
+						"name": "DQF4",
+						"type": "String"
+					},
+					{
+						"name": "DQF5",
+						"type": "String"
+					},
+					{
+						"name": "DQF6",
+						"type": "String"
+					},
+					{
+						"name": "DQF7",
+						"type": "String"
+					},
+					{
+						"name": "DQF8",
+						"type": "String"
+					},
+					{
+						"name": "DQF9",
+						"type": "String"
+					},
+					{
+						"name": "DQF10",
+						"type": "String"
+					},
+					{
+						"name": "DQF11",
+						"type": "String"
+					},
+					{
+						"name": "RSE1",
+						"type": "String"
+					},
+					{
+						"name": "RSE2",
+						"type": "String"
+					},
+					{
+						"name": "RSE3",
+						"type": "String"
+					},
+					{
+						"name": "RSE4",
+						"type": "String"
+					},
+					{
+						"name": "RSE5",
+						"type": "String"
+					},
+					{
+						"name": "RSE6",
+						"type": "String"
+					},
+					{
+						"name": "RSE7",
+						"type": "String"
+					},
+					{
+						"name": "RSE8",
+						"type": "String"
+					},
+					{
+						"name": "RSE9",
+						"type": "String"
+					},
+					{
+						"name": "RSE10",
+						"type": "String"
+					},
+					{
+						"name": "RSE11",
+						"type": "String"
+					},
+					{
+						"name": "P1",
+						"type": "String"
+					},
+					{
+						"name": "P2",
+						"type": "String"
+					},
+					{
+						"name": "P3",
+						"type": "String"
+					},
+					{
+						"name": "P4",
+						"type": "String"
+					},
+					{
+						"name": "P5",
+						"type": "String"
+					},
+					{
+						"name": "P6",
+						"type": "String"
+					},
+					{
+						"name": "P7",
+						"type": "String"
+					},
+					{
+						"name": "P8",
+						"type": "String"
+					},
+					{
+						"name": "P9",
+						"type": "String"
+					},
+					{
+						"name": "P10",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ConditionalSpilt')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Inventory1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Table",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Year",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rcode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Demographic",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P10",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[.HES2018-Table10]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Conditionalhihgdata')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage6",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "adfstagedcopytempdata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Rcode",
+						"type": "String"
+					},
+					{
+						"name": "Demographic",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Est1",
+						"type": "String"
+					},
+					{
+						"name": "Est2",
+						"type": "String"
+					},
+					{
+						"name": "Est3",
+						"type": "String"
+					},
+					{
+						"name": "Est4",
+						"type": "String"
+					},
+					{
+						"name": "Est5",
+						"type": "String"
+					},
+					{
+						"name": "Est6",
+						"type": "String"
+					},
+					{
+						"name": "Est7",
+						"type": "String"
+					},
+					{
+						"name": "Est8",
+						"type": "String"
+					},
+					{
+						"name": "Est9",
+						"type": "String"
+					},
+					{
+						"name": "Est10",
+						"type": "String"
+					},
+					{
+						"name": "Est11",
+						"type": "String"
+					},
+					{
+						"name": "DQF1",
+						"type": "String"
+					},
+					{
+						"name": "DQF2",
+						"type": "String"
+					},
+					{
+						"name": "DQF3",
+						"type": "String"
+					},
+					{
+						"name": "DQF4",
+						"type": "String"
+					},
+					{
+						"name": "DQF5",
+						"type": "String"
+					},
+					{
+						"name": "DQF6",
+						"type": "String"
+					},
+					{
+						"name": "DQF7",
+						"type": "String"
+					},
+					{
+						"name": "DQF8",
+						"type": "String"
+					},
+					{
+						"name": "DQF9",
+						"type": "String"
+					},
+					{
+						"name": "DQF10",
+						"type": "String"
+					},
+					{
+						"name": "DQF11",
+						"type": "String"
+					},
+					{
+						"name": "RSE1",
+						"type": "String"
+					},
+					{
+						"name": "RSE2",
+						"type": "String"
+					},
+					{
+						"name": "RSE3",
+						"type": "String"
+					},
+					{
+						"name": "RSE4",
+						"type": "String"
+					},
+					{
+						"name": "RSE5",
+						"type": "String"
+					},
+					{
+						"name": "RSE6",
+						"type": "String"
+					},
+					{
+						"name": "RSE7",
+						"type": "String"
+					},
+					{
+						"name": "RSE8",
+						"type": "String"
+					},
+					{
+						"name": "RSE9",
+						"type": "String"
+					},
+					{
+						"name": "RSE10",
+						"type": "String"
+					},
+					{
+						"name": "RSE11",
+						"type": "String"
+					},
+					{
+						"name": "P1",
+						"type": "String"
+					},
+					{
+						"name": "P2",
+						"type": "String"
+					},
+					{
+						"name": "P3",
+						"type": "String"
+					},
+					{
+						"name": "P4",
+						"type": "String"
+					},
+					{
+						"name": "P5",
+						"type": "String"
+					},
+					{
+						"name": "P6",
+						"type": "String"
+					},
+					{
+						"name": "P7",
+						"type": "String"
+					},
+					{
+						"name": "P8",
+						"type": "String"
+					},
+					{
+						"name": "P9",
+						"type": "String"
+					},
+					{
+						"name": "P10",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "dbo.json"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

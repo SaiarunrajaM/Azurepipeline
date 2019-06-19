@@ -1,0 +1,153 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf19"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage2_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage3_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage4_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage5_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage6_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage7_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase3_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase4_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase5_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase6_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase7_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase_Inventory_connectionString": {
+			"value": ""
+		},
+		"B050819_connectionString": {
+			"value": ""
+		},
+		"CSV_linkedService_connectionString": {
+			"value": ""
+		},
+		"CSVtoSQLAzure_DK_connectionString": {
+			"value": ""
+		},
+		"Cateorydata_connectionString": {
+			"value": ""
+		},
+		"DataLink_DK_connectionString": {
+			"value": ""
+		},
+		"Dinesh_DB_connectionString": {
+			"value": ""
+		},
+		"EMP_connectionString": {
+			"value": ""
+		},
+		"Incremental_Load_connectionString": {
+			"value": ""
+		},
+		"Inventory_connectionString": {
+			"value": ""
+		},
+		"Inventory1_connectionString": {
+			"value": ""
+		},
+		"Lookupandforeachcategory_connectionString": {
+			"value": ""
+		},
+		"SQL_Categories_connectionString": {
+			"value": ""
+		},
+		"SVAzureBlobStorage2_connectionString": {
+			"value": ""
+		},
+		"SV_SqlServer_connectionString": {
+			"value": ""
+		},
+		"SV_Sqlservers_connectionString": {
+			"value": ""
+		},
+		"SalestoAzure_connectionString": {
+			"value": ""
+		},
+		"SqlServer_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"SqlServer2_connectionString": {
+			"value": ""
+		},
+		"SqlServer3_connectionString": {
+			"value": ""
+		},
+		"SqlServer4_connectionString": {
+			"value": ""
+		},
+		"SqlServer_new_connectionString": {
+			"value": ""
+		},
+		"SqlServeronprem_connectionString": {
+			"value": ""
+		},
+		"Sqlcategories_connectionString": {
+			"value": ""
+		},
+		"Success_connectionString": {
+			"value": ""
+		},
+		"YEarData_connectionString": {
+			"value": ""
+		},
+		"Year2008_connectionString": {
+			"value": ""
+		},
+		"adventureSqlServer_connectionString": {
+			"value": ""
+		},
+		"linkedService1_connectionString": {
+			"value": ""
+		},
+		"SourceDataset_3kp_properties_typeProperties_fileName": {
+			"value": "Sample.csv"
+		},
+		"SourceDataset_3kp_properties_typeProperties_folderPath": {
+			"value": "filecontainer"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

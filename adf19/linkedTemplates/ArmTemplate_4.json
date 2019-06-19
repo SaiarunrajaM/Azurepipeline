@@ -1,0 +1,2164 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "adf19"
+		},
+		"SourceDataset_3kp_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "Sample.csv"
+		},
+		"SourceDataset_3kp_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "filecontainer"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/SV_DelimitedText')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SVAzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "HES2018-Table10.csv",
+						"container": "csvtosql"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Rcode",
+						"type": "String"
+					},
+					{
+						"name": "Demographic",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Est1",
+						"type": "String"
+					},
+					{
+						"name": "Est2",
+						"type": "String"
+					},
+					{
+						"name": "Est3",
+						"type": "String"
+					},
+					{
+						"name": "Est4",
+						"type": "String"
+					},
+					{
+						"name": "Est5",
+						"type": "String"
+					},
+					{
+						"name": "Est6",
+						"type": "String"
+					},
+					{
+						"name": "Est7",
+						"type": "String"
+					},
+					{
+						"name": "Est8",
+						"type": "String"
+					},
+					{
+						"name": "Est9",
+						"type": "String"
+					},
+					{
+						"name": "Est10",
+						"type": "String"
+					},
+					{
+						"name": "Est11",
+						"type": "String"
+					},
+					{
+						"name": "DQF1",
+						"type": "String"
+					},
+					{
+						"name": "DQF2",
+						"type": "String"
+					},
+					{
+						"name": "DQF3",
+						"type": "String"
+					},
+					{
+						"name": "DQF4",
+						"type": "String"
+					},
+					{
+						"name": "DQF5",
+						"type": "String"
+					},
+					{
+						"name": "DQF6",
+						"type": "String"
+					},
+					{
+						"name": "DQF7",
+						"type": "String"
+					},
+					{
+						"name": "DQF8",
+						"type": "String"
+					},
+					{
+						"name": "DQF9",
+						"type": "String"
+					},
+					{
+						"name": "DQF10",
+						"type": "String"
+					},
+					{
+						"name": "DQF11",
+						"type": "String"
+					},
+					{
+						"name": "RSE1",
+						"type": "String"
+					},
+					{
+						"name": "RSE2",
+						"type": "String"
+					},
+					{
+						"name": "RSE3",
+						"type": "String"
+					},
+					{
+						"name": "RSE4",
+						"type": "String"
+					},
+					{
+						"name": "RSE5",
+						"type": "String"
+					},
+					{
+						"name": "RSE6",
+						"type": "String"
+					},
+					{
+						"name": "RSE7",
+						"type": "String"
+					},
+					{
+						"name": "RSE8",
+						"type": "String"
+					},
+					{
+						"name": "RSE9",
+						"type": "String"
+					},
+					{
+						"name": "RSE10",
+						"type": "String"
+					},
+					{
+						"name": "RSE11",
+						"type": "String"
+					},
+					{
+						"name": "P1",
+						"type": "String"
+					},
+					{
+						"name": "P2",
+						"type": "String"
+					},
+					{
+						"name": "P3",
+						"type": "String"
+					},
+					{
+						"name": "P4",
+						"type": "String"
+					},
+					{
+						"name": "P5",
+						"type": "String"
+					},
+					{
+						"name": "P6",
+						"type": "String"
+					},
+					{
+						"name": "P7",
+						"type": "String"
+					},
+					{
+						"name": "P8",
+						"type": "String"
+					},
+					{
+						"name": "P9",
+						"type": "String"
+					},
+					{
+						"name": "P10",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SV_SqlServerTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Saratest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServeronprem",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "[[dbo].[InvWarhouseMaster]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_3kp')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "Prop_0",
+						"type": "String"
+					},
+					{
+						"name": "Prop_1",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"fileName": "[parameters('SourceDataset_3kp_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('SourceDataset_3kp_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_j35')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer_new",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"structure": [
+					{
+						"name": "ID",
+						"type": "Int32"
+					},
+					{
+						"name": "Names",
+						"type": "String"
+					}
+				],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_nuz')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SV_Sqlservers",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"structure": [
+					{
+						"name": "BusinessEntityID",
+						"type": "Int32"
+					},
+					{
+						"name": "NationalIDNumber",
+						"type": "String"
+					},
+					{
+						"name": "LoginID",
+						"type": "String"
+					},
+					{
+						"name": "OrganizationNode"
+					},
+					{
+						"name": "OrganizationLevel",
+						"type": "Int16"
+					},
+					{
+						"name": "JobTitle",
+						"type": "String"
+					},
+					{
+						"name": "BirthDate",
+						"type": "Date"
+					},
+					{
+						"name": "MaritalStatus",
+						"type": "String"
+					},
+					{
+						"name": "Gender",
+						"type": "String"
+					},
+					{
+						"name": "HireDate",
+						"type": "Date"
+					},
+					{
+						"name": "SalariedFlag",
+						"type": "Boolean"
+					},
+					{
+						"name": "VacationHours",
+						"type": "Int16"
+					},
+					{
+						"name": "SickLeaveHours",
+						"type": "Int16"
+					},
+					{
+						"name": "CurrentFlag",
+						"type": "Boolean"
+					},
+					{
+						"name": "rowguid",
+						"type": "Guid"
+					},
+					{
+						"name": "ModifiedDate",
+						"type": "DateTime"
+					}
+				],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_qb4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Dinesh_DB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"structure": [
+					{
+						"name": "BusinessEntityID",
+						"type": "String"
+					},
+					{
+						"name": "NationalIDNumber",
+						"type": "String"
+					},
+					{
+						"name": "LoginID",
+						"type": "String"
+					},
+					{
+						"name": "OrganizationNode",
+						"type": "String"
+					},
+					{
+						"name": "OrganizationLevel",
+						"type": "String"
+					},
+					{
+						"name": "JobTitle",
+						"type": "String"
+					},
+					{
+						"name": "BirthDate",
+						"type": "String"
+					},
+					{
+						"name": "MaritalStatus",
+						"type": "String"
+					},
+					{
+						"name": "Gender",
+						"type": "String"
+					},
+					{
+						"name": "HireDate",
+						"type": "String"
+					},
+					{
+						"name": "SalariedFlag",
+						"type": "String"
+					},
+					{
+						"name": "VacationHours",
+						"type": "String"
+					},
+					{
+						"name": "SickLeaveHours",
+						"type": "String"
+					},
+					{
+						"name": "CurrentFlag",
+						"type": "String"
+					},
+					{
+						"name": "rowguid",
+						"type": "String"
+					},
+					{
+						"name": "ModifiedDate",
+						"type": "String"
+					}
+				],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_tmr')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"structure": [
+					{
+						"name": "pname",
+						"type": "String"
+					},
+					{
+						"name": "age",
+						"type": "Int32"
+					},
+					{
+						"name": "salary",
+						"type": "Int32"
+					},
+					{
+						"name": "companyname",
+						"type": "String"
+					},
+					{
+						"name": "pid",
+						"type": "Int32"
+					},
+					{
+						"name": "gender",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[persons]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Year2009')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "YEarData",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "csvtosql"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Rcode",
+						"type": "String"
+					},
+					{
+						"name": "Demographic",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Est1",
+						"type": "String"
+					},
+					{
+						"name": "Est2",
+						"type": "String"
+					},
+					{
+						"name": "Est3",
+						"type": "String"
+					},
+					{
+						"name": "Est4",
+						"type": "String"
+					},
+					{
+						"name": "Est5",
+						"type": "String"
+					},
+					{
+						"name": "Est6",
+						"type": "String"
+					},
+					{
+						"name": "Est7",
+						"type": "String"
+					},
+					{
+						"name": "Est8",
+						"type": "String"
+					},
+					{
+						"name": "Est9",
+						"type": "String"
+					},
+					{
+						"name": "Est10",
+						"type": "String"
+					},
+					{
+						"name": "Est11",
+						"type": "String"
+					},
+					{
+						"name": "DQF1",
+						"type": "String"
+					},
+					{
+						"name": "DQF2",
+						"type": "String"
+					},
+					{
+						"name": "DQF3",
+						"type": "String"
+					},
+					{
+						"name": "DQF4",
+						"type": "String"
+					},
+					{
+						"name": "DQF5",
+						"type": "String"
+					},
+					{
+						"name": "DQF6",
+						"type": "String"
+					},
+					{
+						"name": "DQF7",
+						"type": "String"
+					},
+					{
+						"name": "DQF8",
+						"type": "String"
+					},
+					{
+						"name": "DQF9",
+						"type": "String"
+					},
+					{
+						"name": "DQF10",
+						"type": "String"
+					},
+					{
+						"name": "DQF11",
+						"type": "String"
+					},
+					{
+						"name": "RSE1",
+						"type": "String"
+					},
+					{
+						"name": "RSE2",
+						"type": "String"
+					},
+					{
+						"name": "RSE3",
+						"type": "String"
+					},
+					{
+						"name": "RSE4",
+						"type": "String"
+					},
+					{
+						"name": "RSE5",
+						"type": "String"
+					},
+					{
+						"name": "RSE6",
+						"type": "String"
+					},
+					{
+						"name": "RSE7",
+						"type": "String"
+					},
+					{
+						"name": "RSE8",
+						"type": "String"
+					},
+					{
+						"name": "RSE9",
+						"type": "String"
+					},
+					{
+						"name": "RSE10",
+						"type": "String"
+					},
+					{
+						"name": "RSE11",
+						"type": "String"
+					},
+					{
+						"name": "P1",
+						"type": "String"
+					},
+					{
+						"name": "P2",
+						"type": "String"
+					},
+					{
+						"name": "P3",
+						"type": "String"
+					},
+					{
+						"name": "P4",
+						"type": "String"
+					},
+					{
+						"name": "P5",
+						"type": "String"
+					},
+					{
+						"name": "P6",
+						"type": "String"
+					},
+					{
+						"name": "P7",
+						"type": "String"
+					},
+					{
+						"name": "P8",
+						"type": "String"
+					},
+					{
+						"name": "P9",
+						"type": "String"
+					},
+					{
+						"name": "P10",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Year2010')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "YEarData",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "csvtosql"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Rcode",
+						"type": "String"
+					},
+					{
+						"name": "Demographic",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Est1",
+						"type": "String"
+					},
+					{
+						"name": "Est2",
+						"type": "String"
+					},
+					{
+						"name": "Est3",
+						"type": "String"
+					},
+					{
+						"name": "Est4",
+						"type": "String"
+					},
+					{
+						"name": "Est5",
+						"type": "String"
+					},
+					{
+						"name": "Est6",
+						"type": "String"
+					},
+					{
+						"name": "Est7",
+						"type": "String"
+					},
+					{
+						"name": "Est8",
+						"type": "String"
+					},
+					{
+						"name": "Est9",
+						"type": "String"
+					},
+					{
+						"name": "Est10",
+						"type": "String"
+					},
+					{
+						"name": "Est11",
+						"type": "String"
+					},
+					{
+						"name": "DQF1",
+						"type": "String"
+					},
+					{
+						"name": "DQF2",
+						"type": "String"
+					},
+					{
+						"name": "DQF3",
+						"type": "String"
+					},
+					{
+						"name": "DQF4",
+						"type": "String"
+					},
+					{
+						"name": "DQF5",
+						"type": "String"
+					},
+					{
+						"name": "DQF6",
+						"type": "String"
+					},
+					{
+						"name": "DQF7",
+						"type": "String"
+					},
+					{
+						"name": "DQF8",
+						"type": "String"
+					},
+					{
+						"name": "DQF9",
+						"type": "String"
+					},
+					{
+						"name": "DQF10",
+						"type": "String"
+					},
+					{
+						"name": "DQF11",
+						"type": "String"
+					},
+					{
+						"name": "RSE1",
+						"type": "String"
+					},
+					{
+						"name": "RSE2",
+						"type": "String"
+					},
+					{
+						"name": "RSE3",
+						"type": "String"
+					},
+					{
+						"name": "RSE4",
+						"type": "String"
+					},
+					{
+						"name": "RSE5",
+						"type": "String"
+					},
+					{
+						"name": "RSE6",
+						"type": "String"
+					},
+					{
+						"name": "RSE7",
+						"type": "String"
+					},
+					{
+						"name": "RSE8",
+						"type": "String"
+					},
+					{
+						"name": "RSE9",
+						"type": "String"
+					},
+					{
+						"name": "RSE10",
+						"type": "String"
+					},
+					{
+						"name": "RSE11",
+						"type": "String"
+					},
+					{
+						"name": "P1",
+						"type": "String"
+					},
+					{
+						"name": "P2",
+						"type": "String"
+					},
+					{
+						"name": "P3",
+						"type": "String"
+					},
+					{
+						"name": "P4",
+						"type": "String"
+					},
+					{
+						"name": "P5",
+						"type": "String"
+					},
+					{
+						"name": "P6",
+						"type": "String"
+					},
+					{
+						"name": "P7",
+						"type": "String"
+					},
+					{
+						"name": "P8",
+						"type": "String"
+					},
+					{
+						"name": "P9",
+						"type": "String"
+					},
+					{
+						"name": "P10",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Year2012')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "YEarData",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "csvtosql"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Rcode",
+						"type": "String"
+					},
+					{
+						"name": "Demographic",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Est1",
+						"type": "String"
+					},
+					{
+						"name": "Est2",
+						"type": "String"
+					},
+					{
+						"name": "Est3",
+						"type": "String"
+					},
+					{
+						"name": "Est4",
+						"type": "String"
+					},
+					{
+						"name": "Est5",
+						"type": "String"
+					},
+					{
+						"name": "Est6",
+						"type": "String"
+					},
+					{
+						"name": "Est7",
+						"type": "String"
+					},
+					{
+						"name": "Est8",
+						"type": "String"
+					},
+					{
+						"name": "Est9",
+						"type": "String"
+					},
+					{
+						"name": "Est10",
+						"type": "String"
+					},
+					{
+						"name": "Est11",
+						"type": "String"
+					},
+					{
+						"name": "DQF1",
+						"type": "String"
+					},
+					{
+						"name": "DQF2",
+						"type": "String"
+					},
+					{
+						"name": "DQF3",
+						"type": "String"
+					},
+					{
+						"name": "DQF4",
+						"type": "String"
+					},
+					{
+						"name": "DQF5",
+						"type": "String"
+					},
+					{
+						"name": "DQF6",
+						"type": "String"
+					},
+					{
+						"name": "DQF7",
+						"type": "String"
+					},
+					{
+						"name": "DQF8",
+						"type": "String"
+					},
+					{
+						"name": "DQF9",
+						"type": "String"
+					},
+					{
+						"name": "DQF10",
+						"type": "String"
+					},
+					{
+						"name": "DQF11",
+						"type": "String"
+					},
+					{
+						"name": "RSE1",
+						"type": "String"
+					},
+					{
+						"name": "RSE2",
+						"type": "String"
+					},
+					{
+						"name": "RSE3",
+						"type": "String"
+					},
+					{
+						"name": "RSE4",
+						"type": "String"
+					},
+					{
+						"name": "RSE5",
+						"type": "String"
+					},
+					{
+						"name": "RSE6",
+						"type": "String"
+					},
+					{
+						"name": "RSE7",
+						"type": "String"
+					},
+					{
+						"name": "RSE8",
+						"type": "String"
+					},
+					{
+						"name": "RSE9",
+						"type": "String"
+					},
+					{
+						"name": "RSE10",
+						"type": "String"
+					},
+					{
+						"name": "RSE11",
+						"type": "String"
+					},
+					{
+						"name": "P1",
+						"type": "String"
+					},
+					{
+						"name": "P2",
+						"type": "String"
+					},
+					{
+						"name": "P3",
+						"type": "String"
+					},
+					{
+						"name": "P4",
+						"type": "String"
+					},
+					{
+						"name": "P5",
+						"type": "String"
+					},
+					{
+						"name": "P6",
+						"type": "String"
+					},
+					{
+						"name": "P7",
+						"type": "String"
+					},
+					{
+						"name": "P8",
+						"type": "String"
+					},
+					{
+						"name": "P9",
+						"type": "String"
+					},
+					{
+						"name": "P10",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Yeardata')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "YEarData",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "csvtosql"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Rcode",
+						"type": "String"
+					},
+					{
+						"name": "Demographic",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Est1",
+						"type": "String"
+					},
+					{
+						"name": "Est2",
+						"type": "String"
+					},
+					{
+						"name": "Est3",
+						"type": "String"
+					},
+					{
+						"name": "Est4",
+						"type": "String"
+					},
+					{
+						"name": "Est5",
+						"type": "String"
+					},
+					{
+						"name": "Est6",
+						"type": "String"
+					},
+					{
+						"name": "Est7",
+						"type": "String"
+					},
+					{
+						"name": "Est8",
+						"type": "String"
+					},
+					{
+						"name": "Est9",
+						"type": "String"
+					},
+					{
+						"name": "Est10",
+						"type": "String"
+					},
+					{
+						"name": "Est11",
+						"type": "String"
+					},
+					{
+						"name": "DQF1",
+						"type": "String"
+					},
+					{
+						"name": "DQF2",
+						"type": "String"
+					},
+					{
+						"name": "DQF3",
+						"type": "String"
+					},
+					{
+						"name": "DQF4",
+						"type": "String"
+					},
+					{
+						"name": "DQF5",
+						"type": "String"
+					},
+					{
+						"name": "DQF6",
+						"type": "String"
+					},
+					{
+						"name": "DQF7",
+						"type": "String"
+					},
+					{
+						"name": "DQF8",
+						"type": "String"
+					},
+					{
+						"name": "DQF9",
+						"type": "String"
+					},
+					{
+						"name": "DQF10",
+						"type": "String"
+					},
+					{
+						"name": "DQF11",
+						"type": "String"
+					},
+					{
+						"name": "RSE1",
+						"type": "String"
+					},
+					{
+						"name": "RSE2",
+						"type": "String"
+					},
+					{
+						"name": "RSE3",
+						"type": "String"
+					},
+					{
+						"name": "RSE4",
+						"type": "String"
+					},
+					{
+						"name": "RSE5",
+						"type": "String"
+					},
+					{
+						"name": "RSE6",
+						"type": "String"
+					},
+					{
+						"name": "RSE7",
+						"type": "String"
+					},
+					{
+						"name": "RSE8",
+						"type": "String"
+					},
+					{
+						"name": "RSE9",
+						"type": "String"
+					},
+					{
+						"name": "RSE10",
+						"type": "String"
+					},
+					{
+						"name": "RSE11",
+						"type": "String"
+					},
+					{
+						"name": "P1",
+						"type": "String"
+					},
+					{
+						"name": "P2",
+						"type": "String"
+					},
+					{
+						"name": "P3",
+						"type": "String"
+					},
+					{
+						"name": "P4",
+						"type": "String"
+					},
+					{
+						"name": "P5",
+						"type": "String"
+					},
+					{
+						"name": "P6",
+						"type": "String"
+					},
+					{
+						"name": "P7",
+						"type": "String"
+					},
+					{
+						"name": "P8",
+						"type": "String"
+					},
+					{
+						"name": "P9",
+						"type": "String"
+					},
+					{
+						"name": "P10",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Yeardata2008')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "YEarData",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "csvtosql"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Rcode",
+						"type": "String"
+					},
+					{
+						"name": "Demographic",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Est1",
+						"type": "String"
+					},
+					{
+						"name": "Est2",
+						"type": "String"
+					},
+					{
+						"name": "Est3",
+						"type": "String"
+					},
+					{
+						"name": "Est4",
+						"type": "String"
+					},
+					{
+						"name": "Est5",
+						"type": "String"
+					},
+					{
+						"name": "Est6",
+						"type": "String"
+					},
+					{
+						"name": "Est7",
+						"type": "String"
+					},
+					{
+						"name": "Est8",
+						"type": "String"
+					},
+					{
+						"name": "Est9",
+						"type": "String"
+					},
+					{
+						"name": "Est10",
+						"type": "String"
+					},
+					{
+						"name": "Est11",
+						"type": "String"
+					},
+					{
+						"name": "DQF1",
+						"type": "String"
+					},
+					{
+						"name": "DQF2",
+						"type": "String"
+					},
+					{
+						"name": "DQF3",
+						"type": "String"
+					},
+					{
+						"name": "DQF4",
+						"type": "String"
+					},
+					{
+						"name": "DQF5",
+						"type": "String"
+					},
+					{
+						"name": "DQF6",
+						"type": "String"
+					},
+					{
+						"name": "DQF7",
+						"type": "String"
+					},
+					{
+						"name": "DQF8",
+						"type": "String"
+					},
+					{
+						"name": "DQF9",
+						"type": "String"
+					},
+					{
+						"name": "DQF10",
+						"type": "String"
+					},
+					{
+						"name": "DQF11",
+						"type": "String"
+					},
+					{
+						"name": "RSE1",
+						"type": "String"
+					},
+					{
+						"name": "RSE2",
+						"type": "String"
+					},
+					{
+						"name": "RSE3",
+						"type": "String"
+					},
+					{
+						"name": "RSE4",
+						"type": "String"
+					},
+					{
+						"name": "RSE5",
+						"type": "String"
+					},
+					{
+						"name": "RSE6",
+						"type": "String"
+					},
+					{
+						"name": "RSE7",
+						"type": "String"
+					},
+					{
+						"name": "RSE8",
+						"type": "String"
+					},
+					{
+						"name": "RSE9",
+						"type": "String"
+					},
+					{
+						"name": "RSE10",
+						"type": "String"
+					},
+					{
+						"name": "RSE11",
+						"type": "String"
+					},
+					{
+						"name": "P1",
+						"type": "String"
+					},
+					{
+						"name": "P2",
+						"type": "String"
+					},
+					{
+						"name": "P3",
+						"type": "String"
+					},
+					{
+						"name": "P4",
+						"type": "String"
+					},
+					{
+						"name": "P5",
+						"type": "String"
+					},
+					{
+						"name": "P6",
+						"type": "String"
+					},
+					{
+						"name": "P7",
+						"type": "String"
+					},
+					{
+						"name": "P8",
+						"type": "String"
+					},
+					{
+						"name": "P9",
+						"type": "String"
+					},
+					{
+						"name": "P10",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/lookup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Success",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "dbo.lookup"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/onprimis')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Names",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[BlobTest]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/onprimlink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ContactTypeID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ModifiedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[Person].[ContactType]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sivaji')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Table",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Year",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rcode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Demographic",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Est11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DQF11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE10",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RSE11",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P7",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P8",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P9",
+						"type": "nvarchar"
+					},
+					{
+						"name": "P10",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[.HES2018-Table10]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sivaji2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Year2008",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/yearlow')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "YEarData",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "csvtosql"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Rcode",
+						"type": "String"
+					},
+					{
+						"name": "Demographic",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Est1",
+						"type": "String"
+					},
+					{
+						"name": "Est2",
+						"type": "String"
+					},
+					{
+						"name": "Est3",
+						"type": "String"
+					},
+					{
+						"name": "Est4",
+						"type": "String"
+					},
+					{
+						"name": "Est5",
+						"type": "String"
+					},
+					{
+						"name": "Est6",
+						"type": "String"
+					},
+					{
+						"name": "Est7",
+						"type": "String"
+					},
+					{
+						"name": "Est8",
+						"type": "String"
+					},
+					{
+						"name": "Est9",
+						"type": "String"
+					},
+					{
+						"name": "Est10",
+						"type": "String"
+					},
+					{
+						"name": "Est11",
+						"type": "String"
+					},
+					{
+						"name": "DQF1",
+						"type": "String"
+					},
+					{
+						"name": "DQF2",
+						"type": "String"
+					},
+					{
+						"name": "DQF3",
+						"type": "String"
+					},
+					{
+						"name": "DQF4",
+						"type": "String"
+					},
+					{
+						"name": "DQF5",
+						"type": "String"
+					},
+					{
+						"name": "DQF6",
+						"type": "String"
+					},
+					{
+						"name": "DQF7",
+						"type": "String"
+					},
+					{
+						"name": "DQF8",
+						"type": "String"
+					},
+					{
+						"name": "DQF9",
+						"type": "String"
+					},
+					{
+						"name": "DQF10",
+						"type": "String"
+					},
+					{
+						"name": "DQF11",
+						"type": "String"
+					},
+					{
+						"name": "RSE1",
+						"type": "String"
+					},
+					{
+						"name": "RSE2",
+						"type": "String"
+					},
+					{
+						"name": "RSE3",
+						"type": "String"
+					},
+					{
+						"name": "RSE4",
+						"type": "String"
+					},
+					{
+						"name": "RSE5",
+						"type": "String"
+					},
+					{
+						"name": "RSE6",
+						"type": "String"
+					},
+					{
+						"name": "RSE7",
+						"type": "String"
+					},
+					{
+						"name": "RSE8",
+						"type": "String"
+					},
+					{
+						"name": "RSE9",
+						"type": "String"
+					},
+					{
+						"name": "RSE10",
+						"type": "String"
+					},
+					{
+						"name": "RSE11",
+						"type": "String"
+					},
+					{
+						"name": "P1",
+						"type": "String"
+					},
+					{
+						"name": "P2",
+						"type": "String"
+					},
+					{
+						"name": "P3",
+						"type": "String"
+					},
+					{
+						"name": "P4",
+						"type": "String"
+					},
+					{
+						"name": "P5",
+						"type": "String"
+					},
+					{
+						"name": "P6",
+						"type": "String"
+					},
+					{
+						"name": "P7",
+						"type": "String"
+					},
+					{
+						"name": "P8",
+						"type": "String"
+					},
+					{
+						"name": "P9",
+						"type": "String"
+					},
+					{
+						"name": "P10",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		}
+	]
+}

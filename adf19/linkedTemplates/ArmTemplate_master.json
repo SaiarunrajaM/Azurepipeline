@@ -1,0 +1,484 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "adf19"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
+		"AzureBlobStorage3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage3'"
+		},
+		"AzureBlobStorage4_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage4'"
+		},
+		"AzureBlobStorage5_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage5'"
+		},
+		"AzureBlobStorage6_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage6'"
+		},
+		"AzureBlobStorage7_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage7'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'"
+		},
+		"AzureSqlDatabase3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase3'"
+		},
+		"AzureSqlDatabase4_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase4'"
+		},
+		"AzureSqlDatabase5_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase5'"
+		},
+		"AzureSqlDatabase6_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase6'"
+		},
+		"AzureSqlDatabase7_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase7'"
+		},
+		"AzureSqlDatabase_Inventory_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase_Inventory'"
+		},
+		"B050819_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'B050819'"
+		},
+		"CSV_linkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CSV_linkedService'"
+		},
+		"CSVtoSQLAzure_DK_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CSVtoSQLAzure_DK'"
+		},
+		"Cateorydata_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Cateorydata'"
+		},
+		"DataLink_DK_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'DataLink_DK'"
+		},
+		"Dinesh_DB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Dinesh_DB'"
+		},
+		"EMP_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'EMP'"
+		},
+		"Incremental_Load_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Incremental_Load'"
+		},
+		"Inventory_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Inventory'"
+		},
+		"Inventory1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Inventory1'"
+		},
+		"Lookupandforeachcategory_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Lookupandforeachcategory'"
+		},
+		"SQL_Categories_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SQL_Categories'"
+		},
+		"SVAzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SVAzureBlobStorage2'"
+		},
+		"SV_SqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SV_SqlServer'"
+		},
+		"SV_Sqlservers_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SV_Sqlservers'"
+		},
+		"SalestoAzure_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SalestoAzure'"
+		},
+		"SqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer'"
+		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
+		"SqlServer2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer2'"
+		},
+		"SqlServer3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer3'"
+		},
+		"SqlServer4_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer4'"
+		},
+		"SqlServer_new_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer_new'"
+		},
+		"SqlServeronprem_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServeronprem'"
+		},
+		"Sqlcategories_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Sqlcategories'"
+		},
+		"Success_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Success'"
+		},
+		"YEarData_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'YEarData'"
+		},
+		"Year2008_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Year2008'"
+		},
+		"adventureSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'adventureSqlServer'"
+		},
+		"linkedService1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+		},
+		"SourceDataset_3kp_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "Sample.csv"
+		},
+		"SourceDataset_3kp_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "filecontainer"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas Token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureBlobStorage2_connectionString": {
+						"value": "[parameters('AzureBlobStorage2_connectionString')]"
+					},
+					"AzureBlobStorage3_connectionString": {
+						"value": "[parameters('AzureBlobStorage3_connectionString')]"
+					},
+					"AzureBlobStorage4_connectionString": {
+						"value": "[parameters('AzureBlobStorage4_connectionString')]"
+					},
+					"AzureBlobStorage5_connectionString": {
+						"value": "[parameters('AzureBlobStorage5_connectionString')]"
+					},
+					"AzureBlobStorage6_connectionString": {
+						"value": "[parameters('AzureBlobStorage6_connectionString')]"
+					},
+					"AzureBlobStorage7_connectionString": {
+						"value": "[parameters('AzureBlobStorage7_connectionString')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"AzureSqlDatabase2_connectionString": {
+						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
+					},
+					"AzureSqlDatabase3_connectionString": {
+						"value": "[parameters('AzureSqlDatabase3_connectionString')]"
+					},
+					"AzureSqlDatabase4_connectionString": {
+						"value": "[parameters('AzureSqlDatabase4_connectionString')]"
+					},
+					"AzureSqlDatabase5_connectionString": {
+						"value": "[parameters('AzureSqlDatabase5_connectionString')]"
+					},
+					"AzureSqlDatabase6_connectionString": {
+						"value": "[parameters('AzureSqlDatabase6_connectionString')]"
+					},
+					"AzureSqlDatabase7_connectionString": {
+						"value": "[parameters('AzureSqlDatabase7_connectionString')]"
+					},
+					"AzureSqlDatabase_Inventory_connectionString": {
+						"value": "[parameters('AzureSqlDatabase_Inventory_connectionString')]"
+					},
+					"B050819_connectionString": {
+						"value": "[parameters('B050819_connectionString')]"
+					},
+					"CSV_linkedService_connectionString": {
+						"value": "[parameters('CSV_linkedService_connectionString')]"
+					},
+					"CSVtoSQLAzure_DK_connectionString": {
+						"value": "[parameters('CSVtoSQLAzure_DK_connectionString')]"
+					},
+					"Cateorydata_connectionString": {
+						"value": "[parameters('Cateorydata_connectionString')]"
+					},
+					"DataLink_DK_connectionString": {
+						"value": "[parameters('DataLink_DK_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Dinesh_DB_connectionString": {
+						"value": "[parameters('Dinesh_DB_connectionString')]"
+					},
+					"EMP_connectionString": {
+						"value": "[parameters('EMP_connectionString')]"
+					},
+					"Incremental_Load_connectionString": {
+						"value": "[parameters('Incremental_Load_connectionString')]"
+					},
+					"Inventory_connectionString": {
+						"value": "[parameters('Inventory_connectionString')]"
+					},
+					"Inventory1_connectionString": {
+						"value": "[parameters('Inventory1_connectionString')]"
+					},
+					"Lookupandforeachcategory_connectionString": {
+						"value": "[parameters('Lookupandforeachcategory_connectionString')]"
+					},
+					"SQL_Categories_connectionString": {
+						"value": "[parameters('SQL_Categories_connectionString')]"
+					},
+					"SVAzureBlobStorage2_connectionString": {
+						"value": "[parameters('SVAzureBlobStorage2_connectionString')]"
+					},
+					"SV_SqlServer_connectionString": {
+						"value": "[parameters('SV_SqlServer_connectionString')]"
+					},
+					"SV_Sqlservers_connectionString": {
+						"value": "[parameters('SV_Sqlservers_connectionString')]"
+					},
+					"SalestoAzure_connectionString": {
+						"value": "[parameters('SalestoAzure_connectionString')]"
+					},
+					"SqlServer_connectionString": {
+						"value": "[parameters('SqlServer_connectionString')]"
+					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"SqlServer2_connectionString": {
+						"value": "[parameters('SqlServer2_connectionString')]"
+					},
+					"SqlServer3_connectionString": {
+						"value": "[parameters('SqlServer3_connectionString')]"
+					},
+					"SqlServer4_connectionString": {
+						"value": "[parameters('SqlServer4_connectionString')]"
+					},
+					"SqlServer_new_connectionString": {
+						"value": "[parameters('SqlServer_new_connectionString')]"
+					},
+					"SqlServeronprem_connectionString": {
+						"value": "[parameters('SqlServeronprem_connectionString')]"
+					},
+					"Sqlcategories_connectionString": {
+						"value": "[parameters('Sqlcategories_connectionString')]"
+					},
+					"Success_connectionString": {
+						"value": "[parameters('Success_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"YEarData_connectionString": {
+						"value": "[parameters('YEarData_connectionString')]"
+					},
+					"Year2008_connectionString": {
+						"value": "[parameters('Year2008_connectionString')]"
+					},
+					"adventureSqlServer_connectionString": {
+						"value": "[parameters('adventureSqlServer_connectionString')]"
+					},
+					"linkedService1_connectionString": {
+						"value": "[parameters('linkedService1_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SourceDataset_3kp_properties_typeProperties_fileName": {
+						"value": "[parameters('SourceDataset_3kp_properties_typeProperties_fileName')]"
+					},
+					"SourceDataset_3kp_properties_typeProperties_folderPath": {
+						"value": "[parameters('SourceDataset_3kp_properties_typeProperties_folderPath')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_4')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_6",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_6.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_5')]"
+			]
+		}
+	]
+}
